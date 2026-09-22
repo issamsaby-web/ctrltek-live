@@ -74,6 +74,18 @@ nav a:hover, footer a:hover { color: var(--cyan); }
   gap: clamp(2rem, 6vw, 6rem);
   padding: 7.5rem clamp(1rem, 6vw, 5rem) 4rem;
 }
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: clamp(5.8rem, 9vh, 7.2rem);
+  right: clamp(1rem, 4.5vw, 4rem);
+  width: clamp(20rem, 34vw, 31rem);
+  aspect-ratio: 1;
+  background: url("assets/ctrltek-live-logo.webp") center / contain no-repeat;
+  filter: drop-shadow(0 0 34px rgba(53, 247, 255, 0.24)) drop-shadow(0 0 58px rgba(143, 79, 255, 0.16));
+  pointer-events: none;
+}
 .hero-grid {
   position: absolute;
   inset: 0;
@@ -94,6 +106,11 @@ nav a:hover, footer a:hover { color: var(--cyan); }
 .signal-one { right: -10rem; top: 18%; }
 .signal-two { left: -18rem; bottom: 5%; border-color: rgba(255, 79, 216, 0.22); }
 .hero-content, .live-panel, .section-inner { position: relative; z-index: 1; }
+.hero-content { align-self: center; }
+.hero .live-panel {
+  align-self: start;
+  margin-top: clamp(21rem, 39vh, 27rem);
+}
 .eyebrow {
   margin: 0 0 1rem;
   color: var(--acid);
@@ -358,7 +375,20 @@ footer {
   .hero, .split, .founder-layout, .contact-layout, .principles, .news-grid, .event-grid, .credibility-grid, .video-grid {
     grid-template-columns: 1fr;
   }
-  .hero { min-height: auto; padding-top: 4.8rem; }
+  .hero {
+    min-height: auto;
+    padding-top: 6.2rem;
+  }
+  .hero::before {
+    top: 4.6rem;
+    right: -2.5rem;
+    width: clamp(13rem, 56vw, 18rem);
+    opacity: .34;
+  }
+  .hero .live-panel {
+    align-self: auto;
+    margin-top: 1rem;
+  }
   h1 { font-size: clamp(3.7rem, 22vw, 6rem); }
   h2 { font-size: clamp(2.1rem, 13vw, 3.4rem); }
   .soundcloud-frame { padding: .6rem; }
