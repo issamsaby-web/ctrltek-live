@@ -451,3 +451,6 @@ footer {
   .soundcloud-frame { padding: .6rem; }
   footer { flex-direction: column; }
 }
+.collaboration-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: 1.25rem; }
+.collaboration-card img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: .5rem; margin-bottom: 1rem; }
+.collaboration-artists { font-weight: 700; }
