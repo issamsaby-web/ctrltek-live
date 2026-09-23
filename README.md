@@ -7,7 +7,7 @@ Site statique one-page pour CTRLtek Live.
 1. Créer un dépôt GitHub public, par exemple `ctrltek-live`.
 2. Ajouter les fichiers de ce dossier à la branche `main`.
 3. Dans GitHub, ouvrir `Settings` puis `Pages`.
-4. Choisir `Deploy from a branch`, branche `main`, dossier `/root`.
+4. Choisir `GitHub Actions` comme source de déploiement pour le workflow de collaborations.
 5. Vérifier que le fichier `CNAME` contient `ctrltek.live`.
 6. Dans `Settings` puis `Pages`, confirmer le domaine personnalisé `ctrltek.live`.
 7. Activer `Enforce HTTPS` une fois le certificat disponible.
@@ -48,4 +48,4 @@ Chaque carte est un **projet musical**, pas une fiche artiste. Dupliquer la cart
 
 Pour publier : renseigner le titre public, les artistes, les résumés FR et EN, indiquer `Accord de publication obtenu auprès des artistes : Oui`, puis déplacer la carte dans « Publié sur CTRLtek.live ». Le visuel et l'écoute sont facultatifs mais doivent être des liens HTTPS publics. Une carte incomplète reste invisible. Les chemins Windows, liens privés et notes de production ne sont jamais exportés.
 
-Le script `scripts/sync_trello.py` écrit uniquement les champs publics dans `data/collaborations.json`. Le site affiche les projets dans les sections FR et EN. Pour synchroniser manuellement, fournir `TRELLO_API_KEY` et `TRELLO_TOKEN` comme variables d'environnement locales, lancer `python scripts/sync_trello.py`, vérifier le JSON produit et valider ce fichier dans Git. Le jeton Trello doit pouvoir lire ce tableau ; ne jamais le placer dans le site ni dans Git. L'automatisation planifiée et le déploiement continu ne sont pas activés.
+Le script `scripts/sync_trello.py` écrit uniquement les champs publics dans `data/collaborations.json`. Le site affiche les projets dans les sections FR et EN. Le workflow `.github/workflows/sync-collaborations.yml` synchronise chaque heure et déploie par GitHub Pages. Pour l'activer, créer les **secrets Actions du dépôt** `TRELLO_API_KEY` et `TRELLO_TOKEN` sous Settings → Secrets and variables → Actions, puis sélectionner **GitHub Actions** comme source dans Settings → Pages. Utiliser une clé et un jeton Trello ayant seulement l'accès nécessaire ; ne jamais les mettre dans les cartes, le site ou Git. Lancer une première fois le workflow via Actions → Publish approved collaborations → Run workflow afin de vérifier la connexion et le domaine. Si ces secrets manquent, le workflow échoue clairement sans remplacer les données publiques.
